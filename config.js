@@ -1,6 +1,6 @@
 const LINKS = {
   // Falta pegar aquí el enlace de la carpeta madre general del sistema empresarial.
-  driveMadre: 'DRIVE_URL_CARPETA_MADRE_AQUI',
+  driveMadre: https://drive.google.com/drive/folders/1OgPKKFJyhwyC56HgjN9gSYhz5FO2qE8d?usp=drive_link,
 
   // Carpetas principales en Drive
   gobierno: 'https://drive.google.com/drive/folders/10y9DdX9UZSby3Unmb0Xc14odiqZxmkko?usp=sharing',
