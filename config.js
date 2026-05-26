@@ -19,7 +19,7 @@ const LINKS = {
   legal: 'https://drive.google.com/drive/folders/1sQSLH29iP5R8CDWc-nerPR4qA7ZKPZ5c?usp=drive_link',
   evidencias: 'https://drive.google.com/drive/folders/1mOtXPC_Qdky5-epKc9pOzk1PXbdfEKUn?usp=drive_link',
 
-  // Por ahora universidades apunta a la carpeta general de unidades de negocio
+  // Por ahora universidades apunta a la carpeta general de unidades de negocio.
   universidades: 'https://drive.google.com/drive/folders/1lAR-YxfSaTIB8vOt9O83iZ-JZq8R32-8?usp=drive_link',
 
   // Pendientes para siguientes fases
