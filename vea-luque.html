@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VEA | Gobierno Empresarial | Galápagos Geología Viva</title>
+  <style>
+    :root{
+      --basalto:#111827;
+      --basalto-2:#1f2937;
+      --teal:#0f766e;
+      --teal-2:#14b8a6;
+      --arena:#d6a85b;
+      --arena-2:#f4e4c1;
+      --fondo:#f8fafc;
+      --texto:#111827;
+      --muted:#64748b;
+      --blanco:#ffffff;
+      --rojo:#b91c1c;
+      --verde:#15803d;
+      --amarillo:#b45309;
+      --borde:#e5e7eb;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:var(--fondo);
+      color:var(--texto);
+      line-height:1.5;
+    }
+
+    header{
+      background:
+        linear-gradient(135deg, rgba(17,24,39,.96), rgba(15,118,110,.88)),
+        radial-gradient(circle at top right, rgba(214,168,91,.35), transparent 35%);
+      color:var(--blanco);
+      padding:36px 22px 30px;
+      border-bottom:6px solid var(--arena);
+    }
+
+    .wrap{
+      max-width:1180px;
+      margin:0 auto;
+    }
+
+    .topline{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .logo{
+      width:54px;
+      height:54px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:rgba(20,184,166,.18);
+      border:1px solid rgba(255,255,255,.22);
+      font-size:29px;
+    }
+
+    .brand h1{
+      margin:0;
+      font-size:clamp(1.55rem, 3vw, 2.6rem);
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+
+    .brand p{
+      margin:2px 0 0;
+      color:#ccfbf1;
+      font-size:.96rem;
+    }
+
+    .badge{
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.25);
+      border-radius:999px;
+      padding:9px 14px;
+      color:#fef3c7;
+      font-weight:700;
+      font-size:.9rem;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.3fr .7fr;
+      gap:22px;
+      align-items:end;
+    }
+
+    .hero h2{
+      margin:0 0 10px;
+      font-size:clamp(1.9rem, 4vw, 3.5rem);
+      line-height:1.05;
+    }
+
+    .hero p{
+      margin:0;
+      max-width:820px;
+      color:#e2e8f0;
+      font-size:1.05rem;
+    }
+
+    .hero-card{
+      background:rgba(255,255,255,.1);
+      border:1px solid rgba(255,255,255,.22);
+      border-radius:22px;
+      padding:18px;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-card strong{
+      display:block;
+      color:#fef3c7;
+      font-size:1.05rem;
+      margin-bottom:8px;
+    }
+
+    .hero-card span{
+      color:#e2e8f0;
+      font-size:.94rem;
+    }
+
+    nav{
+      background:var(--blanco);
+      border-bottom:1px solid var(--borde);
+      position:sticky;
+      top:0;
+      z-index:10;
+    }
+
+    .navgrid{
+      max-width:1180px;
+      margin:0 auto;
+      display:flex;
+      gap:8px;
+      padding:10px 22px;
+      overflow:auto;
+    }
+
+    .navgrid a{
+      color:var(--basalto);
+      text-decoration:none;
+      background:#f1f5f9;
+      border:1px solid #e2e8f0;
+      border-radius:999px;
+      padding:8px 13px;
+      font-size:.9rem;
+      white-space:nowrap;
+      font-weight:650;
+    }
+
+    .navgrid a:hover{
+      background:#ccfbf1;
+      border-color:#5eead4;
+    }
+
+    main{
+      max-width:1180px;
+      margin:28px auto 60px;
+      padding:0 22px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(12,1fr);
+      gap:18px;
+    }
+
+    .card{
+      background:var(--blanco);
+      border:1px solid var(--borde);
+      border-radius:22px;
+      padding:22px;
+      box-shadow:0 14px 28px rgba(15,23,42,.05);
+    }
+
+    .span-12{grid-column:span 12}
+    .span-8{grid-column:span 8}
+    .span-6{grid-column:span 6}
+    .span-4{grid-column:span 4}
+
+    h3{
+      margin:0 0 10px;
+      color:var(--basalto);
+      font-size:1.28rem;
+    }
+
+    .eyebrow{
+      color:var(--teal);
+      text-transform:uppercase;
+      font-size:.78rem;
+      letter-spacing:.08em;
+      font-weight:800;
+      margin-bottom:6px;
+    }
+
+    .muted{color:var(--muted)}
+
+    .pillrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:14px;
+    }
+
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      background:#ecfeff;
+      color:#115e59;
+      border:1px solid #99f6e4;
+      border-radius:999px;
+      padding:7px 11px;
+      font-weight:700;
+      font-size:.86rem;
+    }
+
+    .system-list{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:12px;
+    }
+
+    .system-item{
+      border:1px solid #e5e7eb;
+      background:#f8fafc;
+      border-radius:16px;
+      padding:14px;
+    }
+
+    .system-item strong{
+      display:block;
+      color:var(--teal);
+      margin-bottom:4px;
+    }
+
+    .btnrow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .btn{
+      appearance:none;
+      border:0;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      border-radius:14px;
+      padding:11px 15px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.18s ease;
+      font-size:.94rem;
+    }
+
+    .btn-primary{
+      background:var(--teal);
+      color:white;
+    }
+
+    .btn-secondary{
+      background:var(--basalto);
+      color:white;
+    }
+
+    .btn-light{
+      background:#f1f5f9;
+      color:var(--basalto);
+      border:1px solid #e2e8f0;
+    }
+
+    .btn-warning{
+      background:var(--arena);
+      color:#2b1d05;
+    }
+
+    .btn:hover{transform:translateY(-1px); filter:brightness(1.03)}
+
+    .kpi{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:12px;
+      margin-top:10px;
+    }
+
+    .kpi div{
+      border:1px solid var(--borde);
+      border-radius:18px;
+      padding:16px;
+      background:#f9fafb;
+    }
+
+    .kpi strong{
+      display:block;
+      font-size:1.5rem;
+      color:var(--teal);
+      line-height:1;
+    }
+
+    .kpi span{
+      color:var(--muted);
+      font-size:.86rem;
+    }
+
+    form{
+      display:grid;
+      gap:14px;
+      margin-top:10px;
+    }
+
+    .formgrid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    label{
+      display:block;
+      font-size:.88rem;
+      font-weight:750;
+      color:#334155;
+      margin-bottom:6px;
+    }
+
+    input, select, textarea{
+      width:100%;
+      border:1px solid #cbd5e1;
+      border-radius:14px;
+      padding:11px 12px;
+      font:inherit;
+      background:white;
+      color:var(--texto);
+    }
+
+    textarea{min-height:108px; resize:vertical}
+
+    .note{
+      border-left:5px solid var(--arena);
+      background:#fffbeb;
+      border-radius:16px;
+      padding:14px 16px;
+      color:#713f12;
+      font-size:.95rem;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:12px;
+      font-size:.93rem;
+    }
+
+    th, td{
+      border-bottom:1px solid #e5e7eb;
+      padding:10px 8px;
+      text-align:left;
+      vertical-align:top;
+    }
+
+    th{
+      color:#334155;
+      background:#f8fafc;
+    }
+
+    .status{
+      display:inline-flex;
+      border-radius:999px;
+      padding:4px 9px;
+      font-weight:800;
+      font-size:.8rem;
+    }
+
+    .status.verde{background:#dcfce7;color:#166534}
+    .status.amarillo{background:#fef3c7;color:#92400e}
+    .status.rojo{background:#fee2e2;color:#991b1b}
+
+    footer{
+      background:var(--basalto);
+      color:#cbd5e1;
+      padding:24px 22px;
+      font-size:.9rem;
+    }
+
+    footer a{color:#99f6e4}
+
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .span-8,.span-6,.span-4{grid-column:span 12}
+      .system-list{grid-template-columns:1fr}
+      .kpi{grid-template-columns:repeat(2,1fr)}
+      .formgrid{grid-template-columns:1fr}
+    }
+
+    @media (max-width:560px){
+      .kpi{grid-template-columns:1fr}
+      header{padding-top:26px}
+      .brand{align-items:flex-start}
+      .logo{width:46px;height:46px}
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="topline">
+        <div class="brand">
+          <div class="logo">🌋</div>
+          <div>
+            <h1>Galápagos Geología Viva</h1>
+            <p>Sistema Empresarial Integral | Gobierno Empresarial</p>
+          </div>
+        </div>
+        <div class="badge">VEA semanal · Visión · Evaluación · Agenda</div>
+      </div>
+
+      <div class="hero">
+        <div>
+          <h2>VEA: control ejecutivo de visión, evaluación y agenda</h2>
+          <p>
+            Este bloque permite dirigir la empresa con reuniones cortas, compromisos verificables,
+            indicadores simples y seguimiento por unidad de negocio. Es la herramienta base para que
+            las decisiones no queden dispersas en WhatsApp.
+          </p>
+        </div>
+        <div class="hero-card">
+          <strong>Ubicación documental sugerida</strong>
+          <span>Drive / 00_GOBIERNO_EMPRESARIAL / VEA_GGV_Luque_v1_0.xlsx</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <div class="navgrid">
+      <a href="index.html">Inicio</a>
+      <a href="gobierno.html">Gobierno</a>
+      <a href="sistemas-empresariales.html">Sistemas empresariales</a>
+      <a href="unidades-negocio.html">Unidades de negocio</a>
+      <a href="automatizacion-ia.html">Automatización IA</a>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="#registro">Registrar VEA</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="grid">
+      <article class="card span-8">
+        <div class="eyebrow">Propósito operativo</div>
+        <h3>¿Para qué sirve este bloque?</h3>
+        <p>
+          El VEA funciona como una reunión ejecutiva semanal de 45 minutos. Ordena la empresa en tres momentos:
+          primero se revisa la visión, luego se evalúan avances y finalmente se agenda la ejecución.
+          Su función es mantener disciplina empresarial, foco comercial, trazabilidad documental y cumplimiento.
+        </p>
+        <div class="pillrow">
+          <span class="pill">🎯 Visión</span>
+          <span class="pill">📊 Evaluación</span>
+          <span class="pill">🗓️ Agenda</span>
+          <span class="pill">✅ Compromisos</span>
+          <span class="pill">📁 Evidencias</span>
+        </div>
+        <div class="btnrow">
+          <a class="btn btn-primary" id="btnXlsx" href="#" target="_blank" rel="noopener">Abrir matriz VEA</a>
+          <a class="btn btn-secondary" id="btnDrive" href="#" target="_blank" rel="noopener">Abrir carpeta Gobierno</a>
+          <a class="btn btn-light" href="#estructura">Ver estructura</a>
+        </div>
+      </article>
+
+      <article class="card span-4">
+        <div class="eyebrow">Indicadores rápidos</div>
+        <h3>Semáforo VEA</h3>
+        <div class="kpi">
+          <div><strong id="kpiActas">0</strong><span>VEA registrados</span></div>
+          <div><strong id="kpiComp">0</strong><span>Compromisos</span></div>
+          <div><strong id="kpiPend">0</strong><span>Pendientes</span></div>
+          <div><strong id="kpiCierre">0%</strong><span>Cierre semanal</span></div>
+        </div>
+        <p class="muted" style="margin-top:12px;">
+          Estos valores podrán alimentarse desde Google Sheets cuando se active la conexión con Apps Script.
+        </p>
+      </article>
+
+      <article class="card span-12" id="estructura">
+        <div class="eyebrow">Estructura VEA</div>
+        <h3>Cómo se ejecuta una reunión VEA</h3>
+        <div class="system-list">
+          <div class="system-item">
+            <strong>1. Visión</strong>
+            Se confirma el foco de la semana: unidad de negocio prioritaria, meta principal, oportunidad comercial y decisión crítica.
+          </div>
+          <div class="system-item">
+            <strong>2. Evaluación</strong>
+            Se revisa qué se cumplió, qué quedó bloqueado, qué evidencia existe y qué indicador cambió.
+          </div>
+          <div class="system-item">
+            <strong>3. Agenda</strong>
+            Se asignan tareas con responsable, fecha, prioridad, estado, evidencia requerida y próximo paso.
+          </div>
+        </div>
+      </article>
+
+      <article class="card span-6">
+        <div class="eyebrow">Sistemas empresariales vinculados</div>
+        <h3>Qué controla el VEA</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Sistema</th>
+              <th>Uso dentro del VEA</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Gobierno empresarial</td>
+              <td>Decisiones, socios, roles, actas y acuerdos.</td>
+              <td><span class="status verde">Activo</span></td>
+            </tr>
+            <tr>
+              <td>Comercial y CRM</td>
+              <td>Leads, propuestas, seguimiento y cierres.</td>
+              <td><span class="status amarillo">En desarrollo</span></td>
+            </tr>
+            <tr>
+              <td>Operación geoturística</td>
+              <td>Rutas, logística, seguridad, evidencias y satisfacción.</td>
+              <td><span class="status amarillo">En desarrollo</span></td>
+            </tr>
+            <tr>
+              <td>Automatización IA</td>
+              <td>Resumen de reuniones, tareas, reportes y mensajes.</td>
+              <td><span class="status rojo">Por conectar</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="card span-6">
+        <div class="eyebrow">Unidades de negocio</div>
+        <h3>Frentes que deben revisarse</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Unidad</th>
+              <th>Pregunta VEA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Geoturismo especializado</td>
+              <td>¿Qué ruta o experiencia se valida esta semana?</td>
+            </tr>
+            <tr>
+              <td>Universidades extranjeras</td>
+              <td>¿Qué contacto académico o paquete se mueve?</td>
+            </tr>
+            <tr>
+              <td>Souvenirs</td>
+              <td>¿Qué producto, proveedor o inventario se activa?</td>
+            </tr>
+            <tr>
+              <td>Alianzas agencias/hoteles</td>
+              <td>¿Qué aliado recibe propuesta o seguimiento?</td>
+            </tr>
+            <tr>
+              <td>Capacitaciones</td>
+              <td>¿Qué módulo, cápsula o evaluación se publica?</td>
+            </tr>
+            <tr>
+              <td>Consultoría geoturística</td>
+              <td>¿Qué sitio o cliente potencial se diagnostica?</td>
+            </tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="card span-12" id="registro">
+        <div class="eyebrow">Formulario web futuro</div>
+        <h3>Registro VEA para conexión con Google Sheets / Apps Script</h3>
+        <p>
+          Este formulario queda listo como interfaz. Cuando la plataforma esté en línea, se conectará a un endpoint de Apps Script
+          para escribir en la matriz VEA alojada como Google Sheets.
+        </p>
+
+        <div class="note">
+          Antes de activar el envío real, reemplaza en <strong>config.js</strong> los valores
+          <strong>VEA_SHEET_URL</strong>, <strong>DRIVE_GOBIERNO_URL</strong> y <strong>VEA_APPS_SCRIPT_URL</strong>.
+        </div>
+
+        <form id="veaForm">
+          <div class="formgrid">
+            <div>
+              <label for="fecha">Fecha VEA</label>
+              <input type="date" id="fecha" name="fecha" required />
+            </div>
+            <div>
+              <label for="responsable">Responsable de registro</label>
+              <input type="text" id="responsable" name="responsable" placeholder="Nombre del responsable" required />
+            </div>
+            <div>
+              <label for="unidad">Unidad de negocio prioritaria</label>
+              <select id="unidad" name="unidad" required>
+                <option value="">Seleccionar</option>
+                <option>Geoturismo especializado</option>
+                <option>Universidades extranjeras</option>
+                <option>Colegios e instituciones</option>
+                <option>Capacitación guías/operadores</option>
+                <option>Souvenirs y merchandising</option>
+                <option>Alianzas agencias/hoteles</option>
+                <option>Contenido digital</option>
+                <option>Consultoría geoturística</option>
+              </select>
+            </div>
+            <div>
+              <label for="prioridad">Prioridad semanal</label>
+              <select id="prioridad" name="prioridad" required>
+                <option value="">Seleccionar</option>
+                <option>Alta</option>
+                <option>Media</option>
+                <option>Baja</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="vision">Visión de la semana</label>
+            <textarea id="vision" name="vision" placeholder="¿Cuál es el foco estratégico de la semana?" required></textarea>
+          </div>
+
+          <div>
+            <label for="evaluacion">Evaluación de avances</label>
+            <textarea id="evaluacion" name="evaluacion" placeholder="¿Qué se cumplió, qué se bloqueó y qué evidencia existe?" required></textarea>
+          </div>
+
+          <div>
+            <label for="agenda">Agenda y compromisos</label>
+            <textarea id="agenda" name="agenda" placeholder="Tareas, responsables, fechas y evidencias requeridas." required></textarea>
+          </div>
+
+          <div class="formgrid">
+            <div>
+              <label for="estado">Estado general</label>
+              <select id="estado" name="estado" required>
+                <option>En proceso</option>
+                <option>Completado</option>
+                <option>Bloqueado</option>
+                <option>Reprogramado</option>
+              </select>
+            </div>
+            <div>
+              <label for="evidencia">Enlace de evidencia</label>
+              <input type="url" id="evidencia" name="evidencia" placeholder="https://drive.google.com/..." />
+            </div>
+          </div>
+
+          <div class="btnrow">
+            <button class="btn btn-primary" type="submit">Registrar VEA</button>
+            <button class="btn btn-light" type="reset">Limpiar</button>
+            <button class="btn btn-warning" type="button" onclick="copiarResumen()">Copiar resumen para WhatsApp</button>
+          </div>
+
+          <p class="muted" id="formStatus">Estado: formulario listo para conexión.</p>
+        </form>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <strong>Galápagos Geología Viva · Sistema Empresarial Integral.</strong>
+      <br />
+      Este HTML pertenece al bloque <strong>00_GOBIERNO_EMPRESARIAL</strong> y debe ubicarse junto a los demás archivos web de la plataforma.
+    </div>
+  </footer>
+
+  <script src="config.js"></script>
+  <script>
+    const fallbackConfig = {
+      VEA_SHEET_URL: "VEA_SHEET_URL_AQUI",
+      DRIVE_GOBIERNO_URL: "DRIVE_00_GOBIERNO_EMPRESARIAL_URL_AQUI",
+      VEA_APPS_SCRIPT_URL: "VEA_APPS_SCRIPT_URL_AQUI"
+    };
+
+    const cfg = Object.assign({}, fallbackConfig, window.GGV_CONFIG || {});
+
+    function setLink(id, url){
+      const el = document.getElementById(id);
+      if(!el) return;
+      if(url && !url.includes("_AQUI")){
+        el.href = url;
+      } else {
+        el.href = "#";
+        el.addEventListener("click", (e)=>{
+          e.preventDefault();
+          alert("Pendiente: reemplazar el enlace en config.js.");
+        });
+      }
+    }
+
+    setLink("btnXlsx", cfg.VEA_SHEET_URL);
+    setLink("btnDrive", cfg.DRIVE_GOBIERNO_URL);
+
+    const fechaInput = document.getElementById("fecha");
+    if(fechaInput && !fechaInput.value){
+      fechaInput.valueAsDate = new Date();
+    }
+
+    document.getElementById("veaForm").addEventListener("submit", async function(e){
+      e.preventDefault();
+
+      const status = document.getElementById("formStatus");
+      const data = Object.fromEntries(new FormData(this).entries());
+      data.origen = "plataforma_html_vea";
+      data.timestamp = new Date().toISOString();
+
+      if(!cfg.VEA_APPS_SCRIPT_URL || cfg.VEA_APPS_SCRIPT_URL.includes("_AQUI")){
+        status.textContent = "Estado: sin conexión activa. Los datos no se enviaron. Copia el resumen o configura Apps Script.";
+        status.style.color = "#b45309";
+        console.log("Datos VEA listos para enviar:", data);
+        return;
+      }
+
+      try{
+        status.textContent = "Enviando registro VEA...";
+        status.style.color = "#0f766e";
+        const response = await fetch(cfg.VEA_APPS_SCRIPT_URL, {
+          method:"POST",
+          mode:"no-cors",
+          headers: {"Content-Type":"application/json"},
+          body: JSON.stringify(data)
+        });
+
+        status.textContent = "Estado: registro enviado. Verificar actualización en Google Sheets.";
+        status.style.color = "#15803d";
+        this.reset();
+        fechaInput.valueAsDate = new Date();
+      }catch(err){
+        console.error(err);
+        status.textContent = "Estado: error al enviar. Revisar Apps Script o conexión.";
+        status.style.color = "#b91c1c";
+      }
+    });
+
+    function copiarResumen(){
+      const f = document.getElementById("veaForm");
+      const data = Object.fromEntries(new FormData(f).entries());
+      const resumen =
+`VEA - Galápagos Geología Viva
+Fecha: ${data.fecha || ""}
+Responsable: ${data.responsable || ""}
+Unidad prioritaria: ${data.unidad || ""}
+Prioridad: ${data.prioridad || ""}
+
+VISIÓN:
+${data.vision || ""}
+
+EVALUACIÓN:
+${data.evaluacion || ""}
+
+AGENDA:
+${data.agenda || ""}
+
+Estado: ${data.estado || ""}
+Evidencia: ${data.evidencia || ""}`;
+
+      navigator.clipboard.writeText(resumen).then(()=>{
+        const status = document.getElementById("formStatus");
+        status.textContent = "Resumen copiado para WhatsApp.";
+        status.style.color = "#15803d";
+      }).catch(()=>{
+        alert(resumen);
+      });
+    }
+  </script>
+</body>
+</html>
