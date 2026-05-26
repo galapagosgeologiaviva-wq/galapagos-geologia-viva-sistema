@@ -42,7 +42,7 @@ function openLink(key) {
 
 // Configuración específica para VEA semanal
 window.GGV_CONFIG = {
-  VEA_SHEET_URL: 'VEA_SHEET_URL_AQUI',
+  VEA_SHEET_URL: 'https://docs.google.com/spreadsheets/d/1a-EG1srVK4YmKspQnz9Xq6M8BYXFHyv1YQUcKOp3E_c/edit?usp=sharing',
   DRIVE_GOBIERNO_URL: 'https://drive.google.com/drive/folders/10y9DdX9UZSby3Unmb0Xc14odiqZxmkko?usp=sharing',
   VEA_APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwt-gKWSf9BeFwDhWbXFSq6w8SX75xUAlRgS7uB0xM2UpTK5ZV3SUKXoDr_RfCjk-T0/exec',
   VEA_TOKEN: 'GGV2026'
